@@ -1,0 +1,15 @@
+//footer styles
+.footer {
+  width: 100%;
+  background: $white;
+  height: 60px;
+  border: 1px solid $light-color;
+  color: $light-color;
+  font-weight: $regular;
+  font-size: 1rem;
+  @include flex;
+  z-index: 2;
+  &__logo {
+    margin-left: 10px;
+  }
+}

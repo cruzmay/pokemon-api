@@ -1,0 +1,11 @@
+.search {
+  @include flex(center, center, column);
+  margin-top: 100px;
+  margin-bottom: 100px;
+  &__results {
+    margin-top: 40px;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    @include flex;
+  }
+}

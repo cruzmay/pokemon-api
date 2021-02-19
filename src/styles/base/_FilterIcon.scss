@@ -1,0 +1,13 @@
+.filtericon {
+  position: fixed;
+  z-index: 5;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  top: 100px;
+  left: 60px;
+  background-color: $white;
+  cursor: pointer;
+  box-shadow: $shadow;
+  @include flex;
+}
