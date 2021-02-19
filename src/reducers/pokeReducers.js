@@ -1,6 +1,6 @@
 export const pokeReducers = (state = [], action) => {
    switch (action.type) {
-       case 'get':
+       case 'put':
             return[...state]
        default:
           return state

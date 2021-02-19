@@ -14,10 +14,8 @@ export const Header = () => {
     const {toogle, settoogle} = useContext(PokemonContext)
 
 
-    const makeToogle = useCallback((toogle)=>{
-        settoogle(!toogle)
-    },[settoogle])
-
+    const makeToogle = () => settoogle(!toogle) 
+   
     console.log(toogle)
 
     return (

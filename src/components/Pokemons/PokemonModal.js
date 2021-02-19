@@ -11,9 +11,8 @@ import { Logo } from '../Logo/Logo'
 
 export const PokemonModal = () => {
 
-    const { showModal, setshowModal, poke, modal, load } = useContext(PokemonContext)
+    const { showModal, setshowModal, poke, modal, load, setLoad } = useContext(PokemonContext)
     const [description, setdescription] = useState('')
-    const [location, setlocation] = useState('')
 
     
    
@@ -25,21 +24,16 @@ export const PokemonModal = () => {
     const finded = FindId()
     
 
-   
 
     useEffect(() => {
                 const callApiDesc = async () => {
-                const response = await fetch(`https://pokeapi.co/api/v2/characteristic/${finded.id}/`)
+                const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${finded.id}/`)
                 const data = await response.json()
                 setdescription(data)
-
-                const reslocation = await fetch(`https://pokeapi.co/api/v2/location/${finded.id}/`)
-                const datalocation = await reslocation.json()
-                setlocation(datalocation)
-
             }
         callApiDesc()
-    },[finded.id])
+    },[])
+
 
     
 
@@ -80,7 +74,7 @@ export const PokemonModal = () => {
                         </div>
                     </div>
                     <div className="overlay__modal__info__description">
-                       <h2>"{description.descriptions[2].description}"</h2> 
+                       <h2>"{description.flavor_text_entries[0].flavor_text}"</h2> 
                     </div>
                     <div className="overlay__modal__info__icons">
                         <div>
@@ -102,38 +96,30 @@ export const PokemonModal = () => {
                             <GenderIcon/><p>Gender <br/>N/A</p>
                         </div>
                         <div>
-                            <HabitatIcon/><p>Habitat<br/>{location.name}</p>
+                            <HabitatIcon/><p>Habitat<br/>{description.habitat.name}</p>
                         </div>
                         <div>
-                            <ColorIcon/><p>Color<br/>{finded.game_indices[0].version.name}</p>
+                            <ColorIcon/><p>Color<br/>{description.color.name}</p>
                         </div>
                     </div>
                     <div className="separator"></div>
                     <h2>evolution</h2>
                     <div className="overlay__modal__info__evolution">
-                        <div className="overlay__modal__info__evolution__card">
-                                <h3>Warturtle</h3>
-                                <div><ArrowIcon/></div>
-                        </div>
-                         <div className="overlay__modal__info__evolution__card">
-                                <h3>Warturtle</h3>
-                                <div><ArrowIcon/></div>
-                        </div>
-                         <div className="overlay__modal__info__evolution__card">
-                                <h3>Warturtle</h3>
-                                <div><ArrowIcon/></div>
-                        </div>
-                         <div className="overlay__modal__info__evolution__card">
-                                <h3>Warturtle</h3>
-                                <div><ArrowIcon/></div>
-                        </div>
+                        {
+                           description.varieties.map( (item, i) => 
+                                <div 
+                                className="overlay__modal__info__evolution__card"
+                                key={i}
+                                >
+                                     { (i > 0  && i < 6) && <h3>{item.pokemon.name}</h3>}
+                                </div>
+                            ) 
+                        }
                     </div>
                 </div>
             </article>
         </div>
      }
-            
-
-        </>
+     </>
     )
 }

@@ -1,10 +1,7 @@
-import React, { useContext } from 'react'
-import { PokemonContext } from '../../context/PokemonContext'
-import { useForm } from '../../Hooks/useForm'
+import React from 'react'
 
-export const Checkbox = ({type, handleInputChange}) => {
+export const Checkbox = ({ type, handleCheckbox }) => {
 
-   
    const checkName = type.toLowerCase()
 
     return (
@@ -14,7 +11,7 @@ export const Checkbox = ({type, handleInputChange}) => {
                 id={checkName }
                 name='check'
                 value={checkName }
-                onChange={ () => handleInputChange(checkName)}
+                onChange={ ()=> handleCheckbox(checkName)}
             />
             <label htmlFor={checkName}>
                 {type}

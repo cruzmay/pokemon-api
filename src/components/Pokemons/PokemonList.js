@@ -11,12 +11,10 @@ export const PokemonList = ({ handleModal }) => {
     const { poke, load, checkboxes } = useContext(PokemonContext)
     const { counter, increment} = useCounter(20)
 
-    let minCheckbox = checkboxes.toString()
-    let StringtoLowerCase = minCheckbox.toLowerCase()
     
     const FilteredSearch = () => {
         return poke.filter( pokemon => {
-            if(pokemon.types[0].type.name.toLowerCase().includes(StringtoLowerCase)){
+            if(pokemon.types[0].type.name.toLowerCase().includes(checkboxes.data)){
                 return pokemon
             } else {
                 return
@@ -26,6 +24,7 @@ export const PokemonList = ({ handleModal }) => {
 
     const Filtered = FilteredSearch()
     
+    
     return (
 
         <>
@@ -33,7 +32,7 @@ export const PokemonList = ({ handleModal }) => {
         <div className="pokemon__container">
         <section className="pokemon">
             {  
-                Filtered.map ( ( pok, i )=> 
+            Filtered.map ( ( pok, i )=> 
                ( pok.id <= counter ) &&
                 <PokemonCard
                     key={pok.id}

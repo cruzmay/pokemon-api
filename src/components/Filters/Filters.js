@@ -1,22 +1,46 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useReducer } from 'react';
 import { CheckBoxData } from '../../data/CheckBoxData';
 import { Checkbox } from './Checkbox';
 import '../../styles/styles.scss'
 import { PokemonContext } from '../../context/PokemonContext';
+import { checkboxesReducers } from '../../reducers/checkboxesReducers';
+
+    const init = ()=> {
+         return [{
+                data: '',
+                id: new Date().getDate(),
+                checked: false
+            }] 
+        }
+
 
 export const Filters = memo(() => {
     
-    const {checkboxes, setcheckboxes} = useContext(PokemonContext)
+    const { toogle } = useContext(PokemonContext)
 
-    const handleInputChange = (checkname) => {
-        setcheckboxes(checkname)
-    }
-    
+    const [ checkedFilter, dispatch ] = useReducer( checkboxesReducers , [], init )
+
+    const handleCheckbox = (checkName) => {
+
+        const action = {
+            type : 'addCheckBox',
+            payload : {
+                data: checkName,
+                id: new Date().getDate(),
+                checked: true
+            }
+        }
+
+        dispatch(action)
+    } 
+
+
+    console.log(checkedFilter)
 
     return (
         <>  
             <aside
-            className="filters inactive"
+            className={`filters ${ toogle? 'active' : 'inactive'}`}
             id="filters"
             // style={{left: '-360px'}}
             >
@@ -30,7 +54,7 @@ export const Filters = memo(() => {
                               <Checkbox 
                                 {...check}
                                 key={check.type}
-                                handleInputChange={handleInputChange}
+                                handleCheckbox={handleCheckbox}
                                 />
                                 })
                              }   
@@ -42,7 +66,7 @@ export const Filters = memo(() => {
                               <Checkbox 
                               {...check} 
                               key={check.type}
-                              handleInputChange={handleInputChange}
+                              handleCheckbox={handleCheckbox}
                               />
                                 })
                              }   
