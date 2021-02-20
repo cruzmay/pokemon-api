@@ -16,7 +16,7 @@ export const Header = () => {
 
     const makeToogle = () => settoogle(!toogle) 
    
-    console.log(toogle)
+
 
     return (
         <header className="header">

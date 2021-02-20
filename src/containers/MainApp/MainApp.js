@@ -8,12 +8,14 @@ export const MainApp = () => {
     
     const [showModal, setshowModal] = useState(false)
     const [modal, setmodal] = useState(1)
-    const [checkboxes, setcheckboxes] = useState([])
+    const [checkboxes, setcheckboxes] = useState('')
+    const [checked, setchecked] = useState(false)
 
     const [toogle, settoogle] = useState(false)
     const [result, setResult] = useState([]);
     const [poke, setPoke] = useState([]);
     const [load, setLoad] = useState(true);
+    const [idCheck, setidCheck] = useState('')
 
 
 
@@ -51,7 +53,11 @@ export const MainApp = () => {
                 toogle, 
                 settoogle,
                 checkboxes, 
-                setcheckboxes
+                setcheckboxes,
+                checked,
+                setchecked,
+                idCheck, 
+                setidCheck
              }}
         >
             <App/>

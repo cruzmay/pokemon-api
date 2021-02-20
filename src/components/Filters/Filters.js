@@ -16,7 +16,7 @@ import { checkboxesReducers } from '../../reducers/checkboxesReducers';
 
 export const Filters = memo(() => {
     
-    const { toogle } = useContext(PokemonContext)
+    const { toogle, setcheckboxes  } = useContext(PokemonContext)
 
     const [ checkedFilter, dispatch ] = useReducer( checkboxesReducers , [], init )
 
@@ -34,8 +34,11 @@ export const Filters = memo(() => {
         dispatch(action)
     } 
 
+    let checkedAll = checkedFilter
 
-    console.log(checkedFilter)
+    setcheckboxes(checkedAll)
+
+  
 
     return (
         <>  
